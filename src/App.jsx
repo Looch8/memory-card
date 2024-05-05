@@ -1,9 +1,9 @@
-import Card from "./components/Card";
+import GetRandomPokemon from "./components/GetRandomPokemon";
 
 function App() {
 	return (
 		<>
-			<Card />
+			<GetRandomPokemon />
 		</>
 	);
 }
