@@ -1,10 +1,12 @@
 import "./App.css";
-import RenderGifs from "./components/RenderImages";
+
+import Card from "./components/Card";
 
 function App() {
 	return (
 		<>
-			<RenderGifs />
+			<h1 className="title">Memory Card Game</h1>
+			<Card />
 		</>
 	);
 }

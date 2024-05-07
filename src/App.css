@@ -1,15 +1,3 @@
-.gif-container {
-	display: flex;
-	flex-direction: row;
-	max-width: 100%;
-	flex-wrap: wrap;
-	outline: auto;
-
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
-.gif-images {
-	width: 20%;
+.card-image {
+	max-width: 25%;
 }
