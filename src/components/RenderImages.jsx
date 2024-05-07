@@ -17,11 +17,16 @@ function RenderGifs() {
 
 	const renderGifImages = () => {
 		return gifImages.map((gif, index) => (
-			<img key={index} src={gif.images.original.url} alt="gif" />
+			<img
+				key={index}
+				className="gif-images"
+				src={gif.images.original.url}
+				alt="gif"
+			/>
 		));
 	};
 
-	return <div>{renderGifImages()}</div>;
+	return <div className="gif-container">{renderGifImages()}</div>;
 }
 
 export default RenderGifs;

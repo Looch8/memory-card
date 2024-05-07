@@ -1,3 +1,4 @@
+import "./App.css";
 import RenderGifs from "./components/RenderImages";
 
 function App() {
