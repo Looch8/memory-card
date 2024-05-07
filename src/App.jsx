@@ -4,10 +4,15 @@ import Card from "./components/Card";
 
 function App() {
 	return (
-		<>
+		<div>
 			<h1 className="title">Memory Card Game</h1>
-			<Card />
-		</>
+			<div className="card-container">
+				<Card />
+				<Card />
+				<Card />
+				<Card />
+			</div>
+		</div>
 	);
 }
 
