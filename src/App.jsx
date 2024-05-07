@@ -7,10 +7,10 @@ function App() {
 		<div>
 			<h1 className="title">Memory Card Game</h1>
 			<div className="card-container">
-				<Card />
-				<Card />
-				<Card />
-				<Card />
+				<Card num={1} />
+				<Card num={2} />
+				<Card num={3} />
+				<Card num={4} />
 			</div>
 		</div>
 	);
