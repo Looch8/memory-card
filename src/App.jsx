@@ -12,10 +12,28 @@ function App() {
 			});
 	}, []); // Empty dependency array ensures useEffect runs only once after the initial render
 
+	const shuffleCards = () => {
+		setPokemonData((prevData) => {
+			// Create a copy of the data array
+			const shuffledData = [...prevData];
+
+			// Shuffle the copy
+			for (let i = shuffledData.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[shuffledData[i], shuffledData[j]] = [
+					shuffledData[j],
+					shuffledData[i],
+				];
+			}
+
+			return shuffledData;
+		});
+	};
+
 	return (
 		<div>
 			<h1 className="title">Memory Card Game</h1>
-			<div className="card-container">
+			<div className="card-container" onClick={shuffleCards}>
 				{pokemonData.map((pokemon, index) => (
 					<div key={index} className="card">
 						<img
