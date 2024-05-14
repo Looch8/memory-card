@@ -1,54 +1,33 @@
-import { useEffect, useState } from "react";
+import apple from "./assets/apple.avif";
+import banana from "./assets/banana.avif";
+import pear from "./assets/pear.avif";
+import watermelon from "./assets/watermelon.avif";
+import mango from "./assets/mango.avif";
 import "./App.css";
 
-function App() {
-	const [pokemonData, setPokemonData] = useState([]);
+const Card = ({ fruit, text }) => {
+	return (
+		<div className="card">
+			<img src={fruit} />
+			<p>{text}</p>
+		</div>
+	);
+};
 
-	useEffect(() => {
-		fetch("https://pokeapi.co/api/v2/pokemon?limit=5")
-			.then((response) => response.json())
-			.then((data) => {
-				setPokemonData(data.results);
-			});
-	}, []); // Empty dependency array ensures useEffect runs only once after the initial render
-
-	const shuffleCards = () => {
-		setPokemonData((prevData) => {
-			// Create a copy of the data array
-			const shuffledData = [...prevData];
-
-			// Shuffle the copy
-			for (let i = shuffledData.length - 1; i > 0; i--) {
-				const j = Math.floor(Math.random() * (i + 1));
-				[shuffledData[i], shuffledData[j]] = [
-					shuffledData[j],
-					shuffledData[i],
-				];
-			}
-
-			return shuffledData;
-		});
-	};
-
+const App = () => {
 	return (
 		<div>
-			<h1 className="title">Memory Card Game</h1>
-			<div className="card-container" onClick={shuffleCards}>
-				{pokemonData.map((pokemon, index) => (
-					<div key={index} className="card">
-						<img
-							src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-								index + 1
-							}.png`}
-							alt={pokemon.name}
-						/>
-						<h3>{pokemon.name}</h3>
-					</div>
-				))}
+			<h2>Memory Game</h2>
+			<div className="cards-container">
+				<Card fruit={apple} text="Apple" />
+				<Card fruit={banana} text="Banana" />
+				<Card fruit={pear} text="Pear" />
+				<Card fruit={mango} text="Mango" />
+				<Card fruit={watermelon} text="Watermelon" />
 			</div>
 		</div>
 	);
-}
+};
 
 export default App;
 

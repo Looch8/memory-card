@@ -1,22 +1,8 @@
-.title {
-	text-align: center;
-}
-
-.card-image {
+img {
 	max-width: 50%;
 }
 
-.card {
+.cards-container {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	border: 1px solid #ccc;
-}
-
-.card-text {
-	max-width: max-content;
-}
-
-.card-container {
-	display: flex;
 }
