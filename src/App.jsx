@@ -15,6 +15,8 @@ const Card = ({ fruit, text }) => {
 };
 
 const App = () => {
+	const cardImages = [apple, banana, pear, watermelon, mango];
+
 	return (
 		<div>
 			<h2>Memory Game</h2>
