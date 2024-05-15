@@ -9,15 +9,18 @@ import Card from "./components/Card";
 
 const App = () => {
 	const [fruit, setFruit] = useState([
-		apple,
-		banana,
-		pear,
-		mango,
-		watermelon,
+		{ id: 1, image: apple, name: "Apple", clicked: false },
+		{ id: 2, image: banana, name: "Banana", clicked: false },
+		{ id: 3, image: pear, name: "Pear", clicked: false },
+		{ id: 4, image: mango, name: "Mango", clicked: false },
+		{ id: 5, image: watermelon, name: "Watermelon", clicked: false },
 	]);
 
-	const randomizeFruit = () => {
+	console.log(fruit);
+	const randomizeFruit = (index) => {
+		console.log("clicked Index:", index);
 		const shuffledFruit = [...fruit];
+		shuffledFruit[index].clicked = true;
 
 		for (let i = shuffledFruit.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
@@ -34,12 +37,14 @@ const App = () => {
 		<div>
 			<h2>Memory Game</h2>
 			<div className="cards-container">
-				{fruit.map((fruit) => {
+				{fruit.map((fruit, index) => {
 					return (
 						<Card
-							key={fruit}
-							fruit={fruit}
-							onClick={randomizeFruit}
+							key={fruit.id}
+							fruit={fruit.image}
+							onClick={() => randomizeFruit(index)}
+							clicked={fruit.clicked}
+							name={fruit.name}
 						/>
 					);
 				})}
