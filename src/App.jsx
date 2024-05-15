@@ -5,14 +5,7 @@ import watermelon from "./assets/watermelon.avif";
 import mango from "./assets/mango.avif";
 import "./App.css";
 import { useState } from "react";
-
-const Card = ({ fruit, onClick }) => {
-	return (
-		<div className="card">
-			<img src={fruit} onClick={onClick} />
-		</div>
-	);
-};
+import Card from "./components/Card";
 
 const App = () => {
 	const [fruit, setFruit] = useState([
