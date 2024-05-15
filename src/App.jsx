@@ -4,28 +4,52 @@ import pear from "./assets/pear.avif";
 import watermelon from "./assets/watermelon.avif";
 import mango from "./assets/mango.avif";
 import "./App.css";
+import { useState } from "react";
 
-const Card = ({ fruit, text }) => {
+const Card = ({ fruit, onClick }) => {
 	return (
 		<div className="card">
-			<img src={fruit} />
-			<p>{text}</p>
+			<img src={fruit} onClick={onClick} />
 		</div>
 	);
 };
 
 const App = () => {
-	const cardImages = [apple, banana, pear, watermelon, mango];
+	const [fruit, setFruit] = useState([
+		apple,
+		banana,
+		pear,
+		mango,
+		watermelon,
+	]);
+
+	const randomizeFruit = () => {
+		const shuffledFruit = [...fruit];
+
+		for (let i = shuffledFruit.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[shuffledFruit[i], shuffledFruit[j]] = [
+				shuffledFruit[j],
+				shuffledFruit[i],
+			];
+		}
+
+		setFruit(shuffledFruit);
+	};
 
 	return (
 		<div>
 			<h2>Memory Game</h2>
 			<div className="cards-container">
-				<Card fruit={apple} text="Apple" />
-				<Card fruit={banana} text="Banana" />
-				<Card fruit={pear} text="Pear" />
-				<Card fruit={mango} text="Mango" />
-				<Card fruit={watermelon} text="Watermelon" />
+				{fruit.map((fruit) => {
+					return (
+						<Card
+							key={fruit}
+							fruit={fruit}
+							onClick={randomizeFruit}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
