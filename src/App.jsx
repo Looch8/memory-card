@@ -15,12 +15,31 @@ const App = () => {
 		{ id: 4, image: mango, name: "Mango", clicked: false },
 		{ id: 5, image: watermelon, name: "Watermelon", clicked: false },
 	]);
+	const [score, setScore] = useState(0);
+	const [bestScore, setBestScore] = useState(0);
 
 	console.log(fruit);
+
 	const randomizeFruit = (index) => {
-		console.log("clicked Index:", index);
-		const shuffledFruit = [...fruit];
-		shuffledFruit[index].clicked = true;
+		const clickedFruit = fruit[index];
+		const isClicked = clickedFruit.clicked;
+
+		if (isClicked) {
+			gameover();
+			return;
+		}
+
+		const shuffledFruit = fruit.map((f, idx) => {
+			if (idx === index) {
+				return {
+					...f,
+					clicked: true,
+				};
+			}
+			return f;
+		});
+
+		setScore(score + 1);
 
 		for (let i = shuffledFruit.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
@@ -31,6 +50,18 @@ const App = () => {
 		}
 
 		setFruit(shuffledFruit);
+	};
+
+	const gameover = () => {
+		if (score > bestScore) {
+			setBestScore(score);
+		}
+		setScore(0);
+		const resetFruit = fruit.map((f) => ({
+			...f,
+			clicked: false,
+		}));
+		setFruit(resetFruit);
 	};
 
 	return (
@@ -49,12 +80,12 @@ const App = () => {
 					);
 				})}
 			</div>
+			<div className="scoreboard">
+				<p>Score: {score}</p>
+				<p>Best score: {bestScore}</p>
+			</div>
 		</div>
 	);
 };
 
 export default App;
-
-// Take some time to think about the features you want to implement, which components you need, how to structure your application, and how to get the images from an API. Your application should include a scoreboard, which counts the current score, and a “Best Score”, which shows the highest score you’ve achieved thus far. There should be a function that displays the cards in a random order anytime a user clicks one. Be sure to invoke that function when the component mounts.
-// You also need a handful of cards that display images and possibly informational text. These cards and texts need to be fetched from an external API. You can use anything from Giphy to a Pokemon API.
-// Now that you’ve thought about the structure of your application, set up the folder structure and start creating the components.
